@@ -6,7 +6,7 @@
 /*   By: dalcabre <dalcabre@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 12:26:10 by dalcabre          #+#    #+#             */
-/*   Updated: 2024/03/12 16:43:48 by dalcabre         ###   ########.fr       */
+/*   Updated: 2024/03/15 10:43:23 by dalcabre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,18 @@ char	*prepare_new_line(char *saved)
 
 char	*get_next_line(int fd)
 {
-	char			*saved; //el contenido de la caja
 	static char		buffer[BUFFER_SIZE + 1]; //la caja
-
+	char			*saved; //el contenido de la caja
+	
 	saved = malloc(sizeof(char));//porque necesitamos iniciializarlo y da igual el valor, reservamos 1 
 	if (!saved)
+	{
+		free (saved);
 		return (NULL);
+	}
 	saved[0] = '\0'; //se inicializa el primer byte a \0 para asegurar que está vacío y listo para recibir datos
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (free(saved), NULL); //lo mismo que ponerlo en dos líneas
 	saved = read_document(buffer, saved, fd);//leemos el fd
 	if (saved == NULL) //gestión de errores al leer el documento
 		return (NULL);
@@ -82,30 +87,31 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (ft_strchr(buffer, '\n')) //si saved tiene algo más que \n hay que reservar memoria para line
 	{//si hay \n en buffer, copia el contenido de después del \n al comienzo del buffer
-		ft_memcpy(buffer, ft_strchr(buffer, '\n') + 1, ft_strlen(ft_strchr(buffer, '\n') + 1) + 1);
+		ft_memcpy(buffer, ft_strchr(buffer, '\n') + 1, \
+			ft_strlen(ft_strchr(buffer, '\n') + 1) + 1);
 	}//el strchr lo que hace es busca el primer \n y va al caracter siguiente
 	//el strlen calcula cuánto mide eso
 	//le añadimos +1 para el caracter nulo
 	return (saved);
 }
 
-int	main(void)
+/*int	main(void)
 {
 	char	*line;
 	printf("%s", line);
-	// int		fd;
+	int		fd;
 
-	// fd = open("example.txt", O_RDONLY); //abrimos documento
-	// if (fd == -1) //si no hay fd, error
-	// {
-	// 	write(2, "Can't open the file\n", 20);
-	// 	return (1);
-	// }
-	// while ((line = get_next_line(fd)) != NULL) //siempre que la línea tenga algo y no sea nula, o sea no se termine.
-	// {//esto hará que en cada while vayamos a una línea distinta. si lo declarámos arriba, tendríamos que poner abajo que vuelva a hacerlo cada vez que entra al while
-	// 	printf("%s\n", line);
-	// 	free(line);
-	// }
-	// close (fd);
-	// return (0);
-}
+	fd = open("example.txt", O_RDONLY); //abrimos documento
+	if (fd == -1) //si no hay fd, error
+	{
+		write(2, "Can't open the file\n", 20);
+		return (1);
+	}
+	while ((line = get_next_line(fd)) != NULL) //siempre que la línea tenga algo y no sea nula, o sea no se termine.
+	{//esto hará que en cada while vayamos a una línea distinta. si lo declarámos arriba, tendríamos que poner abajo que vuelva a hacerlo cada vez que entra al while
+		printf("%s\n", line);
+		free(line);
+	}
+	close (fd);
+	return (0);
+}*/

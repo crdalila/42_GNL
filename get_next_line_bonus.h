@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dalcabre <dalcabre@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/28 13:37:29 by dalcabre          #+#    #+#             */
-/*   Updated: 2024/03/15 10:46:21 by dalcabre         ###   ########.fr       */
+/*   Created: 2024/03/15 09:17:48 by dalcabre          #+#    #+#             */
+/*   Updated: 2024/03/15 09:37:02 by dalcabre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef GET_NEXT_LINE_H
-#  define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <stdio.h>
 
 # ifndef BUFFER_SIZE
-# 	define BUFFER_SIZE 3
+#  define BUFFER_SIZE 3
 # endif //buffer_size
+
+# ifndef FD_OPEN
+#  define FD_OPEN 256
+# endif //fd_open
 
 char	*get_next_line(int fd);
 char	*read_document(char *buffer, char *saved, int fd);
@@ -30,4 +34,4 @@ int		ft_strlen(char *s1);
 char	*ft_strchr(char *s, char c);
 void	ft_memcpy(char *dest, char *src, size_t n);
 
-# endif //librería
+#endif //library

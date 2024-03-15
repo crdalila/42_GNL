@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dalcabre <dalcabre@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/04 11:40:28 by dalcabre          #+#    #+#             */
-/*   Updated: 2024/03/15 10:44:57 by dalcabre         ###   ########.fr       */
+/*   Created: 2024/03/15 09:17:44 by dalcabre          #+#    #+#             */
+/*   Updated: 2024/03/15 09:23:55 by dalcabre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_strjoin(char *s1, char *s2)
 {
@@ -36,7 +36,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (s3);
 }
 
-int		ft_strlen(char *s1)
+int	ft_strlen(char *s1)
 {
 	size_t	i;
 
@@ -60,7 +60,7 @@ char	*ft_strchr(char *s, char c)
 		if (s[i] == c || c == '\0')
 			return (&s[i]);
 		i++;
-	} 
+	}
 	return (NULL);
 }
 
